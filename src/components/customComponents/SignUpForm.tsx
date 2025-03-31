@@ -22,6 +22,10 @@ const SignUpForm = () => {
       <CardContent>
         <form action={signupAction} className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
+            <Label htmlFor="username">Username</Label>
+            <Input type="text" name="username" id="username" required  className="border-2 border-gray-300 dark:border-input"/>
+          </div>
+          <div className="flex flex-col gap-2">
             <Label htmlFor="email">Email</Label>
             <Input type="email" name="email" id="email" required  className="border-2 border-gray-300 dark:border-input"/>
           </div>

@@ -23,17 +23,17 @@ export const loginAction=async(formData:FormData)=>{
 
 }
 
-export const createBlogPost=()=>{
+export const createBlogPost=async()=>{
 
     //check to see if authenticated
     
 }
-export const updateBlogPost=()=>{
+export const updateBlogPost=async()=>{
     //check to see if authenticated
 
 
 }
-export const deleteBlogPost=()=>{
+export const deleteBlogPost=async()=>{
     //check to see if authenticated
 
 }
