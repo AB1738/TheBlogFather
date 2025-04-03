@@ -162,3 +162,16 @@ export const loginAction = async (prevState:any,formData: FormData) => {
 
 };
 
+export const logoutAction=async()=>{
+
+        const cookie = await cookies();
+
+        const authToken=cookie.get('authToken')
+        if(authToken){
+            cookie.delete('authToken')
+            redirect('/')
+        }
+
+
+}
+

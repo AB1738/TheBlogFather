@@ -3,6 +3,9 @@ import Link from "next/link"
 import { Button } from "../ui/button"
 import { ModeToggle } from "../ui/theme"
 import { useEffect, useState } from "react"
+import { usePathname } from 'next/navigation'
+import { logoutAction } from "@/app/actions/actions"
+
 export const Navbar = () => {
     // const [screenWidth,setScreenWidth]=useState<number>(window.innerWidth)
     // useEffect(() => {
@@ -16,7 +19,30 @@ export const Navbar = () => {
     //       window.removeEventListener('resize', handleResize);
     //     };
     //   }, []); 
-    
+   const pathname = usePathname()
+   console.log(pathname)
+
+    const [isLoggedIn,setIsLoggedIn]=useState<boolean>(false)
+    useEffect(()=>{
+        const checkAuthStatus=async()=>{
+            try{
+            const response=await fetch('http://localhost:3000/api/isLoggedIn')
+            const status=await response.json()
+            console.log(status.message)
+            if(status.message==='Missing Authorization Token'){
+                setIsLoggedIn(false)
+            }else if(status.message==="Logged In"){
+                setIsLoggedIn(true)
+            }
+            }catch(e:unknown){
+                if(e instanceof Error){
+                    console.log(e)
+                }
+            }
+        }
+        checkAuthStatus()
+
+    },[pathname])
 
 
   return (
@@ -38,16 +64,34 @@ export const Navbar = () => {
                     <ModeToggle />
                 </Button>
             </li>
+            {!isLoggedIn?(
+                <>
             <li>
-                <Button asChild  className=" text-xs sm:text-sm" >
-                    <Link href='/auth?login'>Login</Link>  
+            <Button asChild  className=" text-xs sm:text-sm" >
+                <Link href='/auth?login'>Login</Link>  
+            </Button>
+        </li>
+        <li>
+        <Button asChild variant={'purple'} className="text-white text-xs sm:text-sm" >
+            <Link href='/auth?signup'>Sign Up</Link>  
+        </Button>
+        </li>
+        </>
+            ):(
+                <>
+                <li>
+                <Button onClick={logoutAction}  className=" text-xs sm:text-sm cursor-pointer" >
+                    Logout
                 </Button>
             </li>
             <li>
             <Button asChild variant={'purple'} className="text-white text-xs sm:text-sm" >
-                <Link href='/auth?signup'>Sign Up</Link>  
+                <Link href='/dashboard'>Dashboard</Link>  
             </Button>
             </li>
+            </>
+            )}
+
         </ul>
     </nav>
   )

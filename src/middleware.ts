@@ -4,7 +4,19 @@ import * as jose from 'jose'
 
  
 export async function middleware(request: NextRequest) {
-  // const authToken=request.cookies.get('authToken')
+  const publicRoutes = ['/auth'];
+  const protectedRoutes = ['/dashboard'];
+
+  const authToken=request.cookies.get('authToken')
+
+  if (protectedRoutes.includes(request.nextUrl.pathname)&&!authToken) {
+    return NextResponse.redirect(new URL("/auth?login", request.url));
+  }
+  if (publicRoutes.includes(request.nextUrl.pathname) && authToken) {
+    return NextResponse.redirect(new URL("/", request.url));  
+  }
+  return NextResponse.next();
+
   // if(!authToken){
   //   //redirect to login page
   //   console.log('not logged in')
@@ -34,7 +46,7 @@ export async function middleware(request: NextRequest) {
   // }
 }   
 
-export const config = {
-  matcher: '/auth',
-}
+// export const config = {
+//   matcher: '/auth',
+// }
  
