@@ -1,15 +1,27 @@
-'use client'
+"use client";
 import LoginForm from "@/components/customComponents/LoginForm";
 import SignUpForm from "@/components/customComponents/SignUpForm";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useSearchParams } from 'next/navigation';
-
-
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const AuthForm = () => {
-    const [temp]=useSearchParams()
+  const [temp] = useSearchParams();
+  console.log(temp);
+  const [formValue,setFormValue]=useState<string>(temp&&(temp[0]))
+//   console.log(formValue)
+  
+
+//     const onTabChange = () => {
+//      setFormValue(temp[0])  
+//     }
+
   return (
-    <Tabs defaultValue={temp[0]==='login'?'login':'signup'} className="w-[400px] mx-auto">
+    <Tabs
+      defaultValue={formValue??'signup'}
+      className="w-[400px] mx-auto"
+    //   onValueChange={onTabChange}
+    >
       <TabsList>
         <TabsTrigger value="login" className="cursor-pointer">
           Login

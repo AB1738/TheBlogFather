@@ -4,6 +4,8 @@ import "./globals.css";
 import { Navbar } from "@/components/customComponents/Navbar";
 import { ThemeProvider } from '@/providers/themeprovider'
 import Footer from "@/components/customComponents/Footer";
+import { Toaster } from "@/components/ui/sonner"
+
 const montserrat = Montserrat({
   subsets: ["latin"]
 
@@ -44,6 +46,7 @@ export default function RootLayout({
         <main className="sm:max-w-[85%]  mx-auto min-h-screen">
          {children}
         </main>
+        <Toaster/>
         </div>
         <Footer/>
         </ThemeProvider>
