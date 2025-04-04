@@ -4,7 +4,7 @@ import { Button } from "../ui/button"
 import { ModeToggle } from "../ui/theme"
 import { useEffect, useState } from "react"
 import { usePathname } from 'next/navigation'
-import { logoutAction } from "@/app/actions/actions"
+import {  logoutAction } from "@/app/actions/actions"
 
 export const Navbar = () => {
     // const [screenWidth,setScreenWidth]=useState<number>(window.innerWidth)
@@ -51,11 +51,11 @@ export const Navbar = () => {
         <Link className="font-bold text-md sm:text-2xl md:text-3xl " href='/'>
             The<span className="text-purple-500">BlogFather</span>
         </Link>
-        {/* <Link className="  hover:underline text-gray-600 self-end text-[.675rem] sm:text-sm " href='/posts'>
+        <Link className="  hover:underline text-gray-600 dark:text-gray-300 self-end text-[.675rem] sm:text-sm " href='/posts'>
         <p >
             View Posts
         </p>
-        </Link> */}
+        </Link>
         {/* size={screenWidth<640?'xs':'default'} */}
         </div>
         <ul className=" flex gap-2 items-center">
@@ -84,11 +84,13 @@ export const Navbar = () => {
                     Logout
                 </Button>
             </li>
+
             <li>
             <Button asChild variant={'purple'} className="text-white text-xs sm:text-sm" >
                 <Link href='/dashboard'>Dashboard</Link>  
             </Button>
             </li>
+
             </>
             )}
 

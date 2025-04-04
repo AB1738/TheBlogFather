@@ -3,13 +3,14 @@ import LoginForm from "@/components/customComponents/LoginForm";
 import SignUpForm from "@/components/customComponents/SignUpForm";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 const AuthForm = () => {
   const [temp] = useSearchParams();
   console.log(temp);
   const [formValue,setFormValue]=useState<string>(temp&&(temp[0]))
 //   console.log(formValue)
+console.log(setFormValue)
   
 
 //     const onTabChange = () => {

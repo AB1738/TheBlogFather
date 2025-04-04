@@ -14,6 +14,7 @@ export const loginSchema=z.object({
 export const blogPostSchema=z.object({
     title:z.string().min(5,{ message: "Title must be at least 5 characters" }).max(255,{ message: "Title can be no longer than 255 characters" }),
     description:z.string().min(100,{ message: "Description must be at least 100 characters" }),
+    blogPostText:z.string().min(100,{ message: "Blog Post must be at least 500 characters" }),
     author: userSchema.omit({ password: true }), 
     authorId:z.string(),
 

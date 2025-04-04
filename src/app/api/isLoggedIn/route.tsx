@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { prisma } from "../../../../lib/prisma";
+// import { prisma } from "../../../../lib/prisma";
 import * as jose from "jose";
 
 export async function GET(request: NextRequest) {
@@ -10,7 +10,10 @@ export async function GET(request: NextRequest) {
         return Response.json({message:"Missing Authorization Token"})
     }
     const { payload } = await jose.jwtVerify(authToken.value, secret);
-    return Response.json({message:'Logged In'})
+    if(payload){
+        return Response.json({message:'Logged In'})
+
+    }
 
     //     const {payload} = await req.json()
     //     console.log('from api')

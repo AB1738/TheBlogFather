@@ -27,7 +27,7 @@ const LoginForm = () => {
         toast.success("Welcome Back! 🎉");
         router.push('/posts')
       }
-    }, [state]);
+    }, [state,router]);
     
   return (
     <Card className="shadow-lg ">

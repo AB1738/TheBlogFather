@@ -23,7 +23,7 @@ const SignUpForm = () => {
           toast.success("Account Successfully Created 🎉");
           router.push('/auth?login')
         }
-      }, [state]);
+      }, [state,router]);
   return (
     <Card className="shadow-lg ">
       <CardHeader>
