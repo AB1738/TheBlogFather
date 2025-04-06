@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     }
     const { payload } = await jose.jwtVerify(authToken.value, secret);
     if(payload){
-        return Response.json({message:'Logged In'})
+        return Response.json({message:'Logged In',payload:payload.id})
 
     }
 

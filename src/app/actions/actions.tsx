@@ -229,6 +229,31 @@ export const createBlogPost = async (prevState: any, formData: FormData) => {
     }
   }
 };
+export const fetchUserSession=async()=>{
+    try{
+        const cookie = await cookies();
+        const authToken = cookie.get("authToken")?.value;
+        if (!authToken) return;
+        const userPayload = jwt.verify(authToken, process.env.SECRET!) as tokenPayload
+        const user=await prisma.user.findUnique({
+            where:{
+                id:userPayload.id
+            },
+            omit: {
+                hashedPassword: true
+            }
+              
+        })
+        if(!user)return
+    
+        return user
+    }catch(e){
+        if(e instanceof Error){
+            console.log(e)
+        }
+    }
+
+}
 export const updateBlogPost = async () => {
   //check to see if authenticated
 };
