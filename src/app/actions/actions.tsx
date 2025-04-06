@@ -215,6 +215,7 @@ export const createBlogPost = async (prevState: any, formData: FormData) => {
     })
     console.log(newPost)
     revalidatePath('/posts')
+    revalidatePath('/dashboard/blogs')
     return{
         message: "ok"
     }
@@ -254,8 +255,68 @@ export const fetchUserSession=async()=>{
     }
 
 }
-export const updateBlogPost = async () => {
+export const updateBlogPost = async (postId:string,prevState: any, formData: FormData,) => {
   //check to see if authenticated
+  try{
+    console.log(postId)
+    console.log('post id above')
+    const user=await fetchUserSession()
+    if(!user)return
+
+    const title=formData.get('title') as string
+    const description=formData.get('description') as string
+    const blogPostText=formData.get('blogPostText') as string
+
+    if (!title || !description||!blogPostText) {
+        return {
+          errors: {
+            title: ["All fields are required"],
+            description: ["All fields are required"],
+            blogPostText: ["All fields are required"],
+          },
+        };
+      }
+      const blogPost=blogPostSchema.safeParse({
+        title,
+        description,
+        blogPostText,
+        author:user,
+        authorId:user.id
+      })
+      if(!blogPost.success){
+       return{
+       errors:blogPost.error.flatten().fieldErrors
+       }
+      }
+    console.log(blogPost.data)
+    const newPost=await prisma.blogPost.update({
+        where:{
+        id:postId
+        },
+        data:{
+            title,
+            description,
+            blogPostText,
+            authorId:user.id
+        }
+    })
+    console.log(newPost)
+    revalidatePath('/posts')
+    revalidatePath('/dashboard/blogs')
+    return{
+        message: "ok"
+    }
+
+
+
+  }catch(e:unknown){
+    if(e instanceof Error){
+        console.log(e)
+        return{
+            message: "not ok"
+        }
+    }
+  }
 };
 export const deleteBlogPost = async (id:string) => {
   //check to see if authenticated
