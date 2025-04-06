@@ -168,18 +168,8 @@ export const logoutAction = async () => {
 export const createBlogPost = async (prevState: any, formData: FormData) => {
   try {
     //check to see if authenticated
-    const cookie = await cookies();
-    const authToken = cookie.get("authToken")?.value;
-    if (!authToken) return;
-    const userPayload = jwt.verify(authToken, process.env.SECRET!) as tokenPayload
-    const user=await prisma.user.findUnique({
-        where:{
-            id:userPayload.id
-        }
-    })
-
-    console.log(authToken);
-    console.log(userPayload.id);
+    const user=await fetchUserSession()
+    if(!user)return
     const title=formData.get('title') as string
     const description=formData.get('description') as string
     const blogPostText=formData.get('blogPostText') as string
@@ -197,7 +187,7 @@ export const createBlogPost = async (prevState: any, formData: FormData) => {
         description,
         blogPostText,
         author:user,
-        authorId:userPayload.id
+        authorId:user.id
       })
       if(!blogPost.success){
        return{
@@ -210,7 +200,7 @@ export const createBlogPost = async (prevState: any, formData: FormData) => {
             title,
             description,
             blogPostText,
-            authorId:userPayload.id
+            authorId:user.id
         }
     })
     console.log(newPost)
@@ -258,8 +248,7 @@ export const fetchUserSession=async()=>{
 export const updateBlogPost = async (postId:string,prevState: any, formData: FormData,) => {
   //check to see if authenticated
   try{
-    console.log(postId)
-    console.log('post id above')
+
     const user=await fetchUserSession()
     if(!user)return
 
