@@ -6,6 +6,8 @@ export default async function Home() {
   // console.log(user)
 
   return (
-    <h1>Landing Page</h1>
+    <main className="sm:w-[85%] mx-auto min-h-screen ">
+      <h1>Landing Page</h1>
+    </main>
   );
 }

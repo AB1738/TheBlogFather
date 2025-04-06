@@ -44,9 +44,7 @@ export default function RootLayout({
           >
         <Navbar/>
         <div className="bg-zinc-200 dark:bg-zinc-900 w-full min-h-screen relative">
-        <main className="sm:max-w-[85%]  mx-auto min-h-screen ">
          {children}
-        </main>
         <Toaster/>
         </div>
         <Footer/>
