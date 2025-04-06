@@ -16,13 +16,16 @@ const postsPage = async () => {
     include: {
       author: {
         select: {
-          username: true, // Only select the name of the author
+          username: true,
         },
       },
     },
+    orderBy: {
+        createdAt: 'desc', 
+      },
   });
   console.log(posts);
-  return <BlogPosts posts={posts} />;
+  return <BlogPosts posts={posts} dashboard={false}/>;
 };
 
 export default postsPage;

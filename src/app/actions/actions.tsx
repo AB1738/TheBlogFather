@@ -257,8 +257,32 @@ export const fetchUserSession=async()=>{
 export const updateBlogPost = async () => {
   //check to see if authenticated
 };
-export const deleteBlogPost = async () => {
+export const deleteBlogPost = async (id:string) => {
   //check to see if authenticated
+  try{
+    const user=await fetchUserSession()
+    if(!user)return
+    const post = await prisma.blogPost.delete({
+        where:{
+            id,
+            authorId:user.id
+        },
+      });
+      console.log(post)
+      revalidatePath('/dashboard/blogs')
+      revalidatePath('/posts')
+      return{
+        message:'ok'
+      }
+
+  }catch(e:unknown){
+    if(e instanceof Error){
+        console.log(e)
+        return{
+            message:'Unable To Delete Post. Try Again Later.'
+        }
+    }
+  }
 };
 
 interface tokenPayload{

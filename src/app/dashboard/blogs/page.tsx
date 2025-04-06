@@ -16,13 +16,15 @@ const page = async() => {
           },
         },
       },
+      orderBy: {
+        createdAt: 'desc', 
+      },
   });
-  console.log(posts)
 
   return (
   <>
   <h1 className="text-3xl font-bold text-center pt-4">My Blogs</h1>
-    <BlogPosts posts={posts} />
+    <BlogPosts posts={posts} dashboard={true} />
     </>
     
   )
