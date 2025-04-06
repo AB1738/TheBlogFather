@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/providers/themeprovider'
 import Footer from "@/components/customComponents/Footer";
 import { Toaster } from "@/components/ui/sonner"
 
+
 const montserrat = Montserrat({
   subsets: ["latin"]
 
@@ -42,8 +43,8 @@ export default function RootLayout({
             disableTransitionOnChange
           >
         <Navbar/>
-        <div className="bg-zinc-200 dark:bg-zinc-900 w-full min-h-screen">
-        <main className="sm:max-w-[85%]  mx-auto min-h-screen">
+        <div className="bg-zinc-200 dark:bg-zinc-900 w-full min-h-screen relative">
+        <main className="sm:max-w-[85%]  mx-auto min-h-screen ">
          {children}
         </main>
         <Toaster/>
