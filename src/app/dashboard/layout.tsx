@@ -7,7 +7,7 @@ const Layout=({ children }: { children: React.ReactNode }) =>{
       <AppSidebar />
       <SidebarTrigger  className="cursor-pointer "/>
 
-      <main className=" mx-auto w-full min-h-screen px-4 ">
+      <main className=" mx-auto w-full min-h-screen px-4 pb-2 border-l-2 border-zinc-300 dark:border-zinc-800">
       {children}
       </main>
     </SidebarProvider>

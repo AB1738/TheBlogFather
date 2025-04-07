@@ -27,8 +27,8 @@ const SignUpForm = () => {
   return (
     <Card className="shadow-lg ">
       <CardHeader>
-        <CardTitle>Sign Up</CardTitle>
-        <CardDescription>
+        <CardTitle >Sign Up</CardTitle>
+        <CardDescription className="text-xs sm:text-sm text-left">
           Enter your email and password to create an account
         </CardDescription>
       </CardHeader>

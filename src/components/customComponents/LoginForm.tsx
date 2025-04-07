@@ -32,8 +32,8 @@ const LoginForm = () => {
   return (
     <Card className="shadow-lg ">
       <CardHeader>
-        <CardTitle>Login</CardTitle>
-        <CardDescription>
+        <CardTitle >Login</CardTitle>
+        <CardDescription className="text-xs sm:text-sm text-left">
           Enter your email and password to sign in
         </CardDescription>
       </CardHeader>

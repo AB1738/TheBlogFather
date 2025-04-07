@@ -20,7 +20,7 @@ console.log(setFormValue)
   return (
     <Tabs
       defaultValue={formValue??'signup'}
-      className="w-[400px] mx-auto"
+      className="sm:w-[400px] px-0.5 mx-auto"
     //   onValueChange={onTabChange}
     >
       <TabsList>

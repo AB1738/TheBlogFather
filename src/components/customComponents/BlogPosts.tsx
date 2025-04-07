@@ -45,9 +45,20 @@ const BlogPosts = ({ posts, dashboard }: PostProps) => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex justify-between items-center relative">
-                  {post.title.charAt(0).toUpperCase() + post.title.slice(1)}
-                  {dashboard && (
-                    <BlogButtons id={post.id}/>
+                  {!dashboard ? (
+                    <h1 className="w-full">
+                      {post.title.charAt(0).toUpperCase() + post.title.slice(1)}
+                    </h1>
+                  ) : (
+                    <>
+                      <h1 className="w-[75%] text-center sm:text-left leading-6">
+                        {post.title.charAt(0).toUpperCase() +
+                          post.title.slice(1)}
+                      </h1>
+                      <div className="self-start">
+                      <BlogButtons id={post.id} />
+                      </div>
+                    </>
                   )}
                 </CardTitle>
                 <CardDescription>
