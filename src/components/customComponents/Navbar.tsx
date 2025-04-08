@@ -7,11 +7,21 @@ import { usePathname, useRouter } from 'next/navigation'
 import {  loginAction, logoutAction } from "@/app/actions/actions"
 import { toast } from "sonner"
 import {Menu,SquareX } from 'lucide-react'
+import { useStore } from "zustand"
+import { UserAuthStore } from "@/store"
 
 
 export const Navbar = () => {
     const [isMobile,setIsMobile]=useState<boolean|null>(null)
     const [menuIsClosed,setMenuIsClosed]=useState<boolean>(true)
+    const { user, fetchUser, setUser } = useStore(UserAuthStore);
+    const router=useRouter()
+   const pathname = usePathname()
+   
+    useEffect(() => {
+      fetchUser(); 
+      setMenuIsClosed(true)
+    }, [pathname]);
     
     useEffect(() => {
         const handleResize = () => window.innerWidth>=768?setIsMobile(false):setIsMobile(true)
@@ -22,32 +32,8 @@ export const Navbar = () => {
           window.removeEventListener('resize', handleResize);
         };
       }, []); 
-    const router=useRouter()
-   const pathname = usePathname()
-   console.log(pathname)
 
-    const [isLoggedIn,setIsLoggedIn]=useState<boolean>(false)
-    useEffect(()=>{
-        const checkAuthStatus=async()=>{
-            try{
-            const response=await fetch('http://localhost:3000/api/isLoggedIn')
-            const status=await response.json()
-            console.log(status.message)
-            if(status.message==='Missing Authorization Token'){
-                setIsLoggedIn(false)
-            }else if(status.message==="Logged In"){
-                setIsLoggedIn(true)
-            }
-            }catch(e:unknown){
-                if(e instanceof Error){
-                    console.log(e)
-                }
-            }
-        }
-        checkAuthStatus()
-        setMenuIsClosed(true)
 
-    },[pathname])
  
     const handleClick=async()=>{
         const response=await logoutAction()
@@ -92,7 +78,7 @@ export const Navbar = () => {
 
      <ul className=" flex flex-col sm:flex-row gap-2 items-center desktop">
 
-         {!isLoggedIn?(
+         {user===undefined?(
              <>
          <li>
          <Button asChild  className=" text-xs sm:text-sm"  >
@@ -130,7 +116,7 @@ export const Navbar = () => {
      {(isMobile&&!menuIsClosed)&&(
                       <ul className=" flex flex-col sm:flex-row  items-center py-2 w-full transition-all">
 
-                      {!isLoggedIn?(
+                      {user===undefined?(
                           <>
                       <li className=" w-full p-2">
                       <Button asChild  className=" text-xs sm:text-sm"  size={'full'} >
