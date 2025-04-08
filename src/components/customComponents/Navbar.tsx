@@ -60,9 +60,9 @@ export const Navbar = () => {
      <Link className="font-bold text-lg  sm:text-2xl md:text-3xl " href='/'>
          The<span className="text-purple-500">BlogFather</span>
      </Link>
-     <Link className="  hover:underline text-gray-600 dark:text-gray-300 pb-1  self-end text-[.675rem] sm:text-sm " href='/posts'>
+     <Link className="  hover:underline text-gray-600 dark:text-gray-300 pb-1  self-end text-[.675rem] sm:text-sm font-semibold" href='/posts'>
      <p >
-         View Posts
+         View Blogs
      </p>
      </Link>
      </div>
@@ -81,12 +81,12 @@ export const Navbar = () => {
          {user===undefined?(
              <>
          <li>
-         <Button asChild  className=" text-xs sm:text-sm"  >
+         <Button asChild  className=" text-xs sm:text-sm font-semibold"  >
              <Link href='/auth?login'>Login</Link>  
          </Button>
      </li>
      <li>
-     <Button asChild variant={'purple'} className="text-white text-xs sm:text-sm"  >
+     <Button asChild variant={'purple'} className="text-white text-xs sm:text-sm font-semibold"  >
          <Link href='/auth?signup'>Sign Up</Link>  
      </Button>
      </li>
@@ -94,13 +94,13 @@ export const Navbar = () => {
          ):(
              <>
              <li>
-             <Button onClick={handleClick}  className=" text-xs sm:text-sm cursor-pointer"  >
+             <Button onClick={handleClick}  className=" text-xs sm:text-sm cursor-pointer font-semibold"  >
                  Logout
              </Button>
          </li>
 
          <li>
-         <Button asChild variant={'purple'} className="text-white text-xs sm:text-sm"  >
+         <Button asChild variant={'purple'} className="text-white text-xs sm:text-sm font-semibold"  >
              <Link href='/dashboard'>Dashboard</Link>  
          </Button>
          </li>
@@ -119,12 +119,12 @@ export const Navbar = () => {
                       {user===undefined?(
                           <>
                       <li className=" w-full p-2">
-                      <Button asChild  className=" text-xs sm:text-sm"  size={'full'} >
+                      <Button asChild  className=" text-xs sm:text-sm font-semibold"  size={'full'} >
                           <Link href='/auth?login'>Login</Link>  
                       </Button>
                   </li>
                   <li className=" w-full p-2">
-                  <Button asChild variant={'purple'} className="text-white text-xs sm:text-sm" size={'full'}  >
+                  <Button asChild variant={'purple'} className="text-white text-xs sm:text-sm font-semibold" size={'full'}  >
                       <Link href='/auth?signup'>Sign Up</Link>  
                   </Button>
                   </li>
@@ -132,13 +132,13 @@ export const Navbar = () => {
                       ):(
                           <>
                           <li className=" w-full p-2">
-                          <Button onClick={handleClick}  className=" text-xs sm:text-sm cursor-pointer" size={'full'}  >
+                          <Button onClick={handleClick}  className=" text-xs sm:text-sm cursor-pointer font-semibold" size={'full'}  >
                               Logout
                           </Button>
                       </li>
              
                       <li className=" w-full p-2">
-                      <Button asChild variant={'purple'} className="text-white text-xs sm:text-sm" size={'full'}  >
+                      <Button asChild variant={'purple'} className="text-white text-xs sm:text-sm font-semibold" size={'full'}  >
                           <Link href='/dashboard'>Dashboard</Link>  
                       </Button>
                       </li>

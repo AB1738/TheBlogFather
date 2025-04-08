@@ -59,7 +59,7 @@ export default async function Home() {
           <Image
             height={1000}
             width={1000}
-            className="w-full lg:w-[55%] rounded"
+            className="w-full lg:w-[55%] rounded-3xl"
             alt={"Hero Image"}
             src={"/landing-img.jpg"}
           />
@@ -78,7 +78,7 @@ export default async function Home() {
           <div className="flex gap-2 sm:gap-5 pt-5 justify-center">
             <Link
               href="/auth"
-              className="bg-purple-600 text-white  flex justify-center align-center text-sm sm:text-md px-3 py-3 sm:px-5 sm:py-2 shadow-md hover:scale-103 transition-transform rounded font-bold "
+              className="bg-purple-600 text-white  flex justify-center align-center text-sm sm:text-md px-3 py-3 sm:px-5 sm:py-2 shadow-md hover:scale-103 hover:bg-purple-600/85 transition-transform rounded font-bold "
             >
               <div className="flex gap-2 align-center justify-center">
                 Join Today!
@@ -87,7 +87,7 @@ export default async function Home() {
             </Link>
             <Link
               href="/posts"
-              className="bg-black text-white dark:bg-white dark:text-black flex justify-center align-center text-sm sm:text-md px-3 py-3 sm:px-5 sm:py-2 shadow-md hover:scale-103 transition-transform rounded font-bold"
+              className="bg-black text-white dark:bg-white dark:text-black flex justify-center align-center text-sm sm:text-md px-3 py-3 sm:px-5 sm:py-2 shadow-md hover:scale-103 hover:bg-black/85 transition-transform rounded font-bold"
             >
               <div className="flex gap-2 align-center justify-center">
                 View Blogs
