@@ -7,8 +7,7 @@ import {
   CardTitle,
 } from "../ui/card";
 import CreatePostBtn from "./CreatePostBtn";
-import { Trash, SquarePen } from "lucide-react";
-import { deleteBlogPost } from "@/app/actions/actions";
+
 import BlogButtons from "./BlogButtons";
 
 type Author = {
