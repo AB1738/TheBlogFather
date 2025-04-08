@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { ModeToggle } from "../ui/theme"
-import { useCallback, useEffect, useState } from "react"
+import { Suspense, useCallback, useEffect, useState } from "react"
 import { usePathname, useRouter } from 'next/navigation'
 import {  loginAction, logoutAction } from "@/app/actions/actions"
 import { toast } from "sonner"
@@ -10,10 +10,11 @@ import {Menu,SquareX } from 'lucide-react'
 
 
 export const Navbar = () => {
-    const [isMobile,setIsMobile]=useState<boolean>(false)
-    const [menuStatus,setMenusStatus]=useState<boolean>(true)
+    const [isMobile,setIsMobile]=useState<boolean|null>(null)
+    const [menuIsClosed,setMenuIsClosed]=useState<boolean>(true)
+    
     useEffect(() => {
-        const handleResize = () => window.innerWidth<768?setIsMobile(true):setIsMobile(false)
+        const handleResize = () => window.innerWidth>=768?setIsMobile(false):setIsMobile(true)
         handleResize()
         window.addEventListener('resize', handleResize);
     
@@ -44,7 +45,7 @@ export const Navbar = () => {
             }
         }
         checkAuthStatus()
-        setMenusStatus(true)
+        setMenuIsClosed(true)
 
     },[pathname])
  
@@ -53,8 +54,7 @@ export const Navbar = () => {
         if(response?.message){
             toast.success(response.message)
             if(pathname==='/'){
-                router.push('/')
-                router.refresh()
+                window.location.reload()
             }else
             router.push('/')
         }else{
@@ -62,11 +62,8 @@ export const Navbar = () => {
         }
 
     }
-    const handleMenuClick=()=>{
-        setMenusStatus(prevState=>!prevState)
-    }
 
-      
+
   return (
 
     <nav className=" ">
@@ -83,18 +80,17 @@ export const Navbar = () => {
      </p>
      </Link>
      </div>
-     <div className="flex gap-2 items-center justify-center">
+     <div className="flex gap-2 items-center justify-center" >
              <Button asChild className="text-white text-xs sm:text-sm hover:cursor-pointer"  >
                  <ModeToggle />
              </Button>
-             {isMobile&&<div>
-             <Menu onClick={handleMenuClick} className={`cursor-pointer ${menuStatus?'visible':'hidden'}`}/>
-             <SquareX onClick={handleMenuClick} className={`cursor-pointer ${menuStatus?'hidden':'visible'}`}/>
+             <div className="mobile">
+             <Menu onClick={()=>setMenuIsClosed(!menuIsClosed)} className={`cursor-pointer ${menuIsClosed?'visible':'hidden'}`}/>
+             <SquareX onClick={()=>setMenuIsClosed(!menuIsClosed)} className={`cursor-pointer ${menuIsClosed?'hidden':'visible'}`}/>
              </div>
 
-             }
-             {!isMobile&&
-     <ul className=" flex flex-col sm:flex-row gap-2 items-center">
+
+     <ul className=" flex flex-col sm:flex-row gap-2 items-center desktop">
 
          {!isLoggedIn?(
              <>
@@ -127,12 +123,12 @@ export const Navbar = () => {
          )}
 
      </ul>
-}
+
 
      </div>
      </div>
-     {(isMobile&&!menuStatus)&&(
-                      <ul className=" flex flex-col sm:flex-row  items-center py-2 w-full transition-all`">
+     {(isMobile&&!menuIsClosed)&&(
+                      <ul className=" flex flex-col sm:flex-row  items-center py-2 w-full transition-all">
 
                       {!isLoggedIn?(
                           <>
