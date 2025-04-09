@@ -4,8 +4,7 @@ import { FaPencil } from "react-icons/fa6";
 import { RiUserCommunityFill } from "react-icons/ri";
 import { FaHandshakeSimple } from "react-icons/fa6";
 import { FaSlideshare } from "react-icons/fa";
-import { LogIn, FoldHorizontal  } from "lucide-react";
-
+import { LogIn, FoldHorizontal } from "lucide-react";
 
 export default async function Home() {
   return (
@@ -36,23 +35,30 @@ export default async function Home() {
                   <FaPencil />
                   Write About Anything
                 </span>
+                <p className="leading-7">
                 From personal stories to expert insights, your voice matters.
+                </p>
               </li>
               <li className="text-xs sm:text-sm  font-semibold pt-2 text-center flex flex-col gap-1.5">
                 <span className="text-purple-600 dark:text-purple-500 font-bold text-md flex justify-center gap-2 items-center">
                   <FaHandshakeSimple />
                   Simple & Intuitive
                 </span>
+                <p className="leading-7">
                 Our easy-to-use interface makes it effortless to create and
                 publish posts.
+                </p>
               </li>
               <li className="text-xs sm:text-sm font-semibold pt-2 text-center flex flex-col gap-1.5">
-                <span className="text-purple-600 dark:text-purple-500 font-bold text-md flex justify-center gap-2 items-center">
+                <span className="text-purple-600 dark:text-purple-500 font-bold text-md flex justify-center gap-2 items-center ">
                   <RiUserCommunityFill />
                   Engage With Others
                 </span>
-                Read, comment, and interact with fellow bloggers from all over
-                the world.
+                <p className="leading-7">
+                  Read, engage, and connect with fellow bloggers from around the
+                  world. Share ideas, gain inspiration, and be part of a global
+                  blogging community.
+                </p>
               </li>
             </ul>
           </div>
@@ -91,7 +97,7 @@ export default async function Home() {
             >
               <div className="flex gap-2 align-center justify-center">
                 View Blogs
-                <FoldHorizontal  size={16} className="h-full" />
+                <FoldHorizontal size={16} className="h-full" />
               </div>
             </Link>
           </div>
@@ -100,4 +106,3 @@ export default async function Home() {
     </main>
   );
 }
-
