@@ -1,6 +1,11 @@
 import { fetchUserSession } from "@/app/actions/actions";
 import { prisma } from "../../../../lib/prisma";
 import BlogPosts from "@/components/customComponents/BlogPosts";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: 'Dashboard|Blogs',
+  };
 
 const page = async() => {
     

@@ -1,15 +1,11 @@
-import CreatePostBtn from "@/components/customComponents/CreatePostBtn";
 import { prisma } from "../../../lib/prisma";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import Link from "next/link";
+
 import BlogPosts from "@/components/customComponents/BlogPosts";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: 'Blog Posts',
+  };
 
 const postsPage = async () => {
   const posts = await prisma.blogPost.findMany({

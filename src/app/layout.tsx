@@ -22,9 +22,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TheBlogFather",
+  title: {
+   template:'%s',
+   default: "TheBlogFather"
+  },
   description: "Blog app created with next.js",
 };
+
 
 export default function RootLayout({
   children,
