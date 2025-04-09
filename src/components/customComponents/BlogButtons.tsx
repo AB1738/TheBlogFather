@@ -22,7 +22,7 @@ const BlogButtons = ({ id }: BlogButtonsPropType) => {
       <Link href={`/posts/edit/${id}`}>
         <SquarePen size={16} />
       </Link>
-      <Trash size={16} color="red" onClick={handleClick} />
+      <Trash size={16} color="red" onClick={handleClick} className="cursor-pointer" />
     </div>
   );
 };

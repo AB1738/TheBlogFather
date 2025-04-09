@@ -36,47 +36,49 @@ const BlogPosts = ({ posts, dashboard }: PostProps) => {
       </div>
       <div className="flex flex-col gap-2 mt-5">
         {posts.map((post) => (
-          <Link
-            href={`/posts/${post.id}`}
+          <div
             key={post.id}
-            className="shadow-md hover:scale-101 transition-all"
+            className="shadow-md hover:scale-101 transition-all relative"
           >
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex justify-between items-center relative">
-                  {!dashboard ? (
-                    <h1 className="w-full">
-                      {post.title.charAt(0).toUpperCase() + post.title.slice(1)}
-                    </h1>
-                  ) : (
-                    <>
-                      <h1 className="w-[75%] text-center sm:text-left leading-6">
+            
+              <Card className="px-4">
+                  <CardTitle className="flex justify-between items-center relative">
+                    {!dashboard ? (
+                      <h1 className="w-full">
                         {post.title.charAt(0).toUpperCase() +
                           post.title.slice(1)}
                       </h1>
-                      <div className="self-start">
-                      <BlogButtons id={post.id} />
-                      </div>
-                    </>
-                  )}
-                </CardTitle>
-                <CardDescription>
-                  {post.description.charAt(0).toUpperCase() +
-                    post.description.slice(1)}
-                </CardDescription>
-              </CardHeader>
-              <CardFooter className="border-t-2 border-zinc-300 dark:border-zinc-800 flex justify-between w-full pt-3">
-                <p className="text-xs text-gray-500 dark:text-gray-300">
-                  {" "}
-                  {post.author.username.charAt(0).toUpperCase() +
-                    post.author.username.slice(1)}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-300">
-                  {post.updatedAt.toLocaleString()}
-                </p>
-              </CardFooter>
-            </Card>
-          </Link>
+                    ) : (
+                      <>
+                        <h1 className="w-[75%] text-center sm:text-left leading-6">
+                          {post.title.charAt(0).toUpperCase() +
+                            post.title.slice(1)}
+                        </h1>
+                        <div className="self-start">
+                          <BlogButtons id={post.id} />
+                        </div>
+                      </>
+                    )}
+                  </CardTitle>
+                  <Link href={`/posts/${post.id}`} className="space-y-5">
+                  <CardDescription>
+                    {post.description.charAt(0).toUpperCase() +
+                      post.description.slice(1)}
+                  </CardDescription>
+                <CardFooter className="border-t-2 border-zinc-300 dark:border-zinc-800 flex justify-between w-full pt-3">
+                  <p className="text-xs text-gray-500 dark:text-gray-300">
+                    {" "}
+                    {post.author.username.charAt(0).toUpperCase() +
+                      post.author.username.slice(1)}
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-300">
+                    {post.updatedAt.toLocaleString()}
+                  </p>
+                </CardFooter>
+                </Link>
+
+              </Card>
+          </div>
         ))}
       </div>
     </div>

@@ -19,7 +19,7 @@ const CreatePostBtn = () => {
 
   return (
     user!==undefined && (
-      <Button asChild className="hover:scale-101">
+      <Button asChild className="hover:scale-101 mx-auto md:mx-0">
         <Link href="/posts/create-post">
         <Plus />  Create New Post 
         </Link>

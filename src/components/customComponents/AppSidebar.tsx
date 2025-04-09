@@ -24,11 +24,7 @@ const items = [
     url: "/dashboard/blogs",
     icon: NotebookPen ,
   },
-  {
-    title: "Comments",
-    url: "/dashboard/comments",
-    icon: MessageSquareMore ,
-  },
+
   {
     title: "My Profile",
     url: "/dashboard/profile",
