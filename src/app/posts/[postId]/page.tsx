@@ -1,7 +1,7 @@
 import { prisma } from "../../../../lib/prisma";
 import { redirect } from "next/navigation";
 import BackButton from "@/components/customComponents/BackButton";
-import { UserRoundPen, CalendarClock } from "lucide-react";
+import { UserRoundPen, CalendarClock,Eye  } from "lucide-react";
 
 interface postIdPropType {
   params: {
@@ -10,18 +10,26 @@ interface postIdPropType {
 }
 const page = async ({ params }: postIdPropType) => {
   const { postId } = params;
-  const post = await prisma.blogPost.findUnique({
-    where: {
-      id: postId,
+
+  const post = await prisma.blogPost.update({
+    where:{
+        id:postId
     },
     include: {
-      author: {
-        select: {
-          username: true,
+        author: {
+          select: {
+            username: true,
+          },
         },
       },
+    data: {
+      viewCount: {
+        increment: 1,
+      },
+      
     },
-  });
+    
+  })
   if (!post) {
     redirect("/posts");
   }
@@ -32,7 +40,7 @@ const page = async ({ params }: postIdPropType) => {
       <BackButton />
       </div>
       <div className="flex justify-between items-center text-center gap-2 sm:text-left my-3">
-        <h1 className="text-2xl sm:text-3xl font-bold">
+        <h1 className="text-2xl sm:text-3xl font-bold ">
           {post?.title.charAt(0).toUpperCase() + post.title.slice(1)}
         </h1>
         <p className="text-sm flex gap-0.5 self-end">
@@ -41,15 +49,18 @@ const page = async ({ params }: postIdPropType) => {
           <UserRoundPen size={16} />
         </p>
       </div>
-      <h2 className="my-2">{post.description.charAt(0).toUpperCase()+post.description.slice(1)}</h2>
-
-      <h3>
+      <h2 className="my-2 leading-7.5">{post.description.charAt(0).toUpperCase()+post.description.slice(1)}</h2>
+ 
+      <h3 className="leading-7.5">
         {post.blogPostText.charAt(0).toUpperCase() + post.blogPostText.slice(1)}
       </h3>
-      <p className="flex justify-end items-center text-xs  gap-0.5 mt-2.5">
-        {post.updatedAt.toLocaleString()}
+      <div className="flex justify-between items-center   gap-0.5 mt-3.5">
+      <p className="flex items-center gap-2 text-xs"><Eye size={16}/> Views: {post.viewCount}</p>
+      <p className="flex items-center gap-2 text-xs">
+        {post.createdAt.toLocaleString()}
         <CalendarClock size={16} />
-      </p>
+        </p>
+      </div>
     </div>
   );
 };
