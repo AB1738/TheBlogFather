@@ -13,7 +13,7 @@ import {
 
 
 
-interface PropType{
+export interface DashBoardPropTypes{
     posts:{
         id: string;
         title: string;
@@ -25,7 +25,7 @@ interface PropType{
         viewCount: number;
     }[]
 }
-const MainChart = ({posts}:PropType) => {
+const MainChart = ({posts}:DashBoardPropTypes) => {
     const data=posts.map((post,idx)=>(
         {
             Name: `Post ${idx+1}`,
@@ -52,20 +52,3 @@ const MainChart = ({posts}:PropType) => {
 };
 
 export default MainChart;
-
-// const data: {
-//     name: string;
-//     uv: number;
-//     pv: number;
-//     amt: number;
-// }[]
-// (parameter) data: {
-//     id: string;
-//     title: string;
-//     description: string;
-//     blogPostText: string;
-//     authorId: string;
-//     createdAt: Date;
-//     updatedAt: Date;
-//     viewCount: number;
-// }[]
