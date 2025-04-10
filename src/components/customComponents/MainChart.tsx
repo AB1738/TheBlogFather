@@ -11,44 +11,40 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-
-
-export interface DashBoardPropTypes{
-    posts:{
-        id: string;
-        title: string;
-        description: string;
-        blogPostText: string;
-        authorId: string;
-        createdAt: Date;
-        updatedAt: Date;
-        viewCount: number;
-    }[]
+export interface DashBoardPropTypes {
+  posts: {
+    id: string;
+    title: string;
+    description: string;
+    blogPostText: string;
+    authorId: string;
+    createdAt: Date;
+    updatedAt: Date;
+    viewCount: number;
+  }[];
 }
-const MainChart = ({posts}:DashBoardPropTypes) => {
-    const data=posts.map((post,idx)=>(
-        {
-            Name: `Post ${idx+1}`,
-            Views:post.viewCount
-        }
-    ))
+const MainChart = ({ posts }: DashBoardPropTypes) => {
+  const data = posts.map((post, idx) => ({
+    Name: `Post ${idx + 1}`,
+    Views: post.viewCount,
+  }));
+
   return (
     <ResponsiveContainer width={"100%"} height={400}>
       <LineChart data={data} margin={{ top: 20 }} accessibilityLayer>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="Name" padding={{ left: 30, right: 30 }} />
-        <YAxis />
+        <XAxis dataKey="Name" padding={{ left: 30, right: 30 }} stroke="#000" />
+        <YAxis stroke="#000" />
         <Tooltip />
         <Legend />
         <Line
           type="monotone"
           dataKey="Views"
-          stroke="#7C3AED"
+          stroke="#000"
           activeDot={{ r: 8 }}
         ></Line>
       </LineChart>
     </ResponsiveContainer>
   );
 };
-
 export default MainChart;

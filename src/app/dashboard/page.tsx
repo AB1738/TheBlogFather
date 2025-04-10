@@ -20,7 +20,7 @@ const page = async() => {
   return (
     <div>
         <h1 className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-purple-600 py-4">My Blog Dashboard</h1>
-        <Card className="bg-purple-600/5">
+        <Card className="bg-purple-600/5 dark:bg-purple-500/60">
         <MainChart posts={posts}/>
         </Card>
         <div className="flex flex-col sm:flex-row gap-2 pt-4 pb-1 ">
