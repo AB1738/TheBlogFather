@@ -14,7 +14,7 @@ const CreatePostBtn = () => {
       
       useEffect(() => {
         fetchUser(); 
-      }, [pathname]);
+      }, [pathname,fetchUser]);
       
 
   return (

@@ -3,7 +3,6 @@ import {
   Card,
   CardDescription,
   CardFooter,
-  CardHeader,
   CardTitle,
 } from "../ui/card";
 import CreatePostBtn from "./CreatePostBtn";

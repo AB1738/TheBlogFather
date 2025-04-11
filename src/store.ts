@@ -25,7 +25,7 @@ type User={
             set({ user })
 
         }catch(e){
-            console.error('Error fetching user session')
+            console.error('Error fetching user session',e)
             set({ user: undefined })
         }
     }

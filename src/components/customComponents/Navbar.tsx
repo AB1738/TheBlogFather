@@ -2,9 +2,9 @@
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { ModeToggle } from "../ui/theme"
-import { Suspense, useCallback, useEffect, useState } from "react"
+import {  useEffect, useState } from "react"
 import { usePathname, useRouter } from 'next/navigation'
-import {  loginAction, logoutAction } from "@/app/actions/actions"
+import {  logoutAction } from "@/app/actions/actions"
 import { toast } from "sonner"
 import {Menu,SquareX } from 'lucide-react'
 import { useStore } from "zustand"
@@ -14,14 +14,14 @@ import { UserAuthStore } from "@/store"
 export const Navbar = () => {
     const [isMobile,setIsMobile]=useState<boolean|null>(null)
     const [menuIsClosed,setMenuIsClosed]=useState<boolean>(true)
-    const { user, fetchUser, setUser } = useStore(UserAuthStore);
+    const { user, fetchUser } = useStore(UserAuthStore);
     const router=useRouter()
    const pathname = usePathname()
    
     useEffect(() => {
       fetchUser(); 
       setMenuIsClosed(true)
-    }, [pathname]);
+    }, [pathname,fetchUser]);
     
     useEffect(() => {
         const handleResize = () => window.innerWidth>=768?setIsMobile(false):setIsMobile(true)

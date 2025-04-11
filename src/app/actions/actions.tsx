@@ -4,10 +4,8 @@
 import { prisma } from "../../../lib/prisma";
 import { Prisma } from "@prisma/client";
 import { loginSchema, userSchema,blogPostSchema } from "../../../utils/schemas";
-// import { ZodError } from "zod";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import bcrypt from "bcryptjs";
 import { revalidatePath } from "next/cache";
 

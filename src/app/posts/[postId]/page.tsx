@@ -3,13 +3,10 @@ import { redirect } from "next/navigation";
 import BackButton from "@/components/customComponents/BackButton";
 import { UserRoundPen, CalendarClock,Eye  } from "lucide-react";
 
-interface postIdPropType {
-  params: {
-    postId: string;
-  };
-}
-const page = async ({ params }: postIdPropType) => {
-  const { postId } = params;
+
+
+const page = async ({ params }: { params: Promise<{ postId: string; }> }) => {
+  const { postId } =await params;
 
   const post = await prisma.blogPost.update({
     where:{

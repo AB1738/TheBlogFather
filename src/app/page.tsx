@@ -27,7 +27,7 @@ export default async function Home() {
             <p className="text-sm text-center  font-semibold leading-7 ">
               Blogging has never been easier! With TheBlogFather, you can start
               your own blog in just a few clicks. No technical skills required.
-              Simply sign up, write your first post, and you're ready to publish
+              Simply sign up, write your first post, and you&apos;re ready to publish
             </p>
             <ul className="pb-5 sm:pb-0">
               <li className="text-xs sm:text-sm  font-semibold text-center flex flex-col gap-1.5">

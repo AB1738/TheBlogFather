@@ -1,5 +1,5 @@
-import { MessageSquareMore , Home, NotebookPen,User  } from "lucide-react";
-import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Home, NotebookPen,User  } from "lucide-react";
+
 
 import {
   Sidebar,

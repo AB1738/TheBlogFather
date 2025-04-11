@@ -4,7 +4,7 @@ import { Input } from "../ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
-import { createBlogPost, updateBlogPost } from "@/app/actions/actions";
+import {  updateBlogPost } from "@/app/actions/actions";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import BackButton from "./BackButton";
