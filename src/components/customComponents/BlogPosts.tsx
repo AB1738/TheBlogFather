@@ -29,7 +29,7 @@ interface PostProps {
 }
 const BlogPosts = ({ posts, dashboard }: PostProps) => {
   return (
-    <div className="pt-5">
+    <div className="pt-5 pb-5">
       <div className="flex w-full justify-end">
         <CreatePostBtn />
       </div>
@@ -71,7 +71,7 @@ const BlogPosts = ({ posts, dashboard }: PostProps) => {
                       post.author.username.slice(1)}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-300">
-                    {post.updatedAt.toLocaleString()}
+                    {post.createdAt.toLocaleString()}
                   </p>
                 </CardFooter>
                 </Link>
